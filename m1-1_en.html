@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- preloaded D2L template to be changed -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+        href="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/thirdpartylib/bootstrap-4.3.1/css/bootstrap.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet"
+        href="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/css/styles.min.css">
+    <link rel="stylesheet"
+        href="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/thirdpartylib/bootstrap-4.3.1/css/bootstrap.min.css"
+        id="D2L_style_bootstrap">
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="assets/fontawesome-free-5.9.0-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/csps-app.css">
+    <!-- endinject -->
+    <title>Custom Page</title>
+
+</head>
+
+<body>
+    <div class="container-fluid data">
+        <div class="row">
+            <main class="col-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+                <!-- Add your content here -->
+                <h1>Test</h1>
+                <!-- Form template (this will not be rendered per se) -->
+                <template id="text_reflection" class="text-reflection">
+                    <form method="post" class="thoughts-form">
+                        <label :for="textId !== ''? textId : ''" class=" thought-label"
+                            :class="isRequired === true ? 'required': ''">
+                            {{question}} <span v-if="isRequired === true"
+                                class="wb-inv">This question is required to submit the
+                                form.</span></label>
+                        <textarea name="thoughts" :id="textId !== ''? textId : ''"
+                            class="thought-text" v-model="personalThought"></textarea>
+                        <button :id="btnId !== ''? btnId: ''"
+                            class="btn btn-primary thought-submit"
+                            @click.prevent="submitForm">Submit</button>
+
+                        <div class="saved-resp" aria-live="polite">
+                            <p v-if="isValid === true && isRequired === true"
+                                class="feedback feedback-positive">
+                                Your response is:
+                                {{personalThought}}
+                            </p>
+                            <p v-else-if="isValid === false"
+                                class="feedback feedback-negative">
+                                Please fill in the required text box.</p>
+                        </div>
+                    </form>
+                </template>
+                <!-- Form components based on Form template (these will be rendered) -->
+                <div class="form-component"
+                    v-scope="textInputVal({question: 'In your own words, please describe what racism means to you.', isRequired: true, btnId:'thought_submit_1', textId: 'textAreaId_1'})">
+                </div>
+                <div class="form-component"
+                    v-scope="textInputVal({question: 'Please explain why you are interested in taking the course on Advancing the Conversation on Systemic Racism.', isRequired: true,  btnId:'thought_submit_2', textId: 'textAreaId_2'})">
+                </div>
+                <!-- Content ends here -->
+            </main>
+        </div>
+    </div>
+    <!-- Bootstrap JavaScript: jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+        src="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/thirdpartylib/jquery/jquery-3.4.1.min.js">
+    </script>
+    <script
+        src="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/thirdpartylib/popper-js/popper.min.js">
+    </script>
+    <script
+        src="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/thirdpartylib/bootstrap-4.3.1/js/bootstrap.min.js">
+    </script>
+    <!-- Template JavaScript -->
+    <script
+        src="https://app.csps-efpc.gc.ca/shared/LCS_HTML_Templates/CSPS_Template_2021/_assets/js/scripts.min.js">
+    </script>
+
+    <!-- inject:js -->
+    <script type="module" src="assets/js/csps-app.js"></script>
+    <!-- endinject -->
+
+</body>
+
+</html>
