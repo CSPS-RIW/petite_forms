@@ -33,35 +33,39 @@
                 <!-- Form template (this will not be rendered per se) -->
                 <template id="text_reflection" class="text-reflection">
                     <form method="post" class="thoughts-form">
-                        <label :for="textId !== ''? textId : ''" class=" thought-label"
+                        <label :for="uniqueId !== ''? `textAreaId_${uniqueId}` : ''"
+                            class=" thought-label"
                             :class="isRequired === true ? 'required': ''">
                             {{question}} <span v-if="isRequired === true"
                                 class="wb-inv">This question is required to submit the
                                 form.</span></label>
-                        <textarea name="thoughts" :id="textId !== ''? textId : ''"
+                        <textarea name="thoughts"
+                            :id="`textAreaId_${uniqueId}` !== ''? `textAreaId_${uniqueId}` : ''"
                             class="thought-text" v-model="personalThought"></textarea>
-                        <button :id="btnId !== ''? btnId: ''"
+                        <button :id="uniqueId !== ''? `btnId_${uniqueId}`: ''"
                             class="btn btn-primary thought-submit"
                             @click.prevent="submitForm">Submit</button>
 
                         <div class="saved-resp" aria-live="polite">
                             <p v-if="isValid === true && isRequired === true"
-                                class="feedback feedback-positive">
+                                class="feedback feedback-positive"
+                                :aria-labelledby="uniqueId !== ''? `textAreaId_${uniqueId}` : ''">
                                 Your response is:
                                 {{personalThought}}
                             </p>
                             <p v-else-if="isValid === false"
-                                class="feedback feedback-negative">
+                                class="feedback feedback-negative"
+                                :aria-labelledby="uniqueId !== ''? `textAreaId_${uniqueId}` : ''">
                                 Please fill in the required text box.</p>
                         </div>
                     </form>
                 </template>
                 <!-- Form components based on Form template (these will be rendered) -->
                 <div class="form-component"
-                    v-scope="textInputVal({question: 'In your own words, please describe what racism means to you.', isRequired: true, btnId:'thought_submit_1', textId: 'textAreaId_1'})">
+                    v-scope="textInputVal({question: 'In your own words, please describe what racism means to you.', isRequired: true, uniqueId: '1'})">
                 </div>
                 <div class="form-component"
-                    v-scope="textInputVal({question: 'Please explain why you are interested in taking the course on Advancing the Conversation on Systemic Racism.', isRequired: true,  btnId:'thought_submit_2', textId: 'textAreaId_2'})">
+                    v-scope="textInputVal({question: 'Please explain why you are interested in taking the course on Advancing the Conversation on Systemic Racism.', isRequired: true,  uniqueId: '2'})">
                 </div>
                 <!-- Content ends here -->
             </main>
@@ -83,7 +87,7 @@
     </script>
 
     <!-- inject:js -->
-    <script type="module" src="assets/js/csps-app.js"></script>
+    <script src="assets/js/csps-app.js"></script>
     <!-- endinject -->
 
 </body>
